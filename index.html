@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Simple Glowing Cards</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #000;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .search-box {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .ph {
+      width: 300px;
+      padding: 10px 15px;
+      border-radius: 10px;
+      border: 1px solid rgba(0, 255, 255, 0.5);
+      background: #111;
+      color: #0ff;
+      font-size: 16px;
+      outline: none;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+      transition: 0.3s;
+    }
+
+    .ph:focus {
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.7);
+    }
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .card {
+      background: #111;
+      border-radius: 10px;
+      padding: 20px;
+      width: 250px;
+      color: #fff;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+    }
+
+    .card img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      border: 2px solid #0ff;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: #0ff;
+    }
+
+    .card p {
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Search Box -->
+  <div class="search-box">
+    <input
+      class="ph"
+      placeholder="Enter Roll Number e.g. WD101"
+      type="text"
+      id="searchInput"
+    />
+  </div>
+
+  <!-- Cards Go Here -->
+  <div class="card-container" id="cardContainer"></div>
+
+
+    <script>
+  // Student data
+  const students = [
+    {
+      name: "Hamdan",
+      rollNumber: "WD101",
+      course: "Web Development",
+      email: "hamdan.khan@example.com",
+      batch: "2025",
+      image: "https://randomuser.me/api/portraits/men/1.jpg"
+    },
+    {
+      name: "Sara",
+      rollNumber: "WD102",
+      course: "Web Development",
+      email: "sara.sheikh@example.com",
+      batch: "2025",
+      image: "https://randomuser.me/api/portraits/women/1.jpg"
+    },
+    {
+        name: "Rohan",
+        rollNumber: "WD103",
+        course: "Web Development",
+        email: "rohan.mehta@example.com",
+        batch: "2025",
+        image: "https://randomuser.me/api/portraits/men/2.jpg"
+      },
+      {
+        name: "Mehak ",
+        rollNumber: "WD104",
+        course: "Web Development",
+        email: "mehak.sharma@example.com",
+        batch: "2025",
+        image: "https://randomuser.me/api/portraits/women/2.jpg"
+      },
+      {
+        name: "Fahad",
+        rollNumber: "WD105",
+        course: "Web Development",
+        email: "aditya.verma@example.com",
+        batch: "2025",
+        image: "https://randomuser.me/api/portraits/men/3.jpg"
+      },
+      {
+        name: "Fatima Noor",
+        rollNumber: "WD106",
+        course: "Web Development",
+        email: "fatima.noor@example.com",
+        batch: "2025",
+        image: "https://randomuser.me/api/portraits/women/3.jpg"
+      },
+      {
+        name: "Ali Raza",
+        rollNumber: "WD107",
+        course: "Web Development",
+        email: "ali.raza@example.com",
+        batch: "2025",
+        image: "https://randomuser.me/api/portraits/men/4.jpg"
+      },
+      {
+        name: "Kiran Das",
+        rollNumber: "WD108",
+        course: "Web Development",
+        email: "kiran.das@example.com",
+        batch: "2025",
+        image: "https://randomuser.me/api/portraits/women/4.jpg"
+      },
+      {
+        name: "Zara Hussain",
+        rollNumber: "WD109",
+        course: "Web Development",
+        email: "zara.hussain@example.com",
+        batch: "2025",
+        image: "https://randomuser.me/api/portraits/women/5.jpg"
+      },
+      {
+        name: "Rahul Singh",
+        rollNumber: "WD110",
+        course: "Web Development",
+        email: "rahul.singh@example.com",
+        batch: "2025",
+        image: "https://randomuser.me/api/portraits/men/5.jpg"
+      },
+      {
+        name: "Nadia Khan",
+        rollNumber: "WD111",
+        course: "Web Development",
+        email: "nadia.khan@example.com",
+        batch: "2025",
+        image: "https://randomuser.me/api/portraits/women/6.jpg"
+      },
+      {
+        name: "Mohsin Ali",
+        rollNumber: "WD112",
+        course: "Web Development",
+        email: "mohsin.ali@example.com",
+        batch: "2025",
+        image: "https://randomuser.me/api/portraits/men/6.jpg"
+      },
+      {
+        name: "Rehan Qureshi",
+        rollNumber: "WD113",
+        course: "Web Development",
+        email: "rehan.qureshi@example.com",
+        batch: "2025",
+        image: "https://randomuser.me/api/portraits/men/7.jpg"
+      },
+      {
+        name: "Simran Kaur",
+        rollNumber: "WD114",
+        course: "Web Development",
+        email: "simran.kaur@example.com",
+        batch: "2025",
+        image: "https://randomuser.me/api/portraits/women/7.jpg"
+      },
+      {
+        name: "Neha Kapoor",
+        rollNumber: "WD115",
+        course: "Web Development",
+        email: "neha.kapoor@example.com",
+        batch: "2025",
+        image: "https://randomuser.me/api/portraits/women/8.jpg"
+      },
+      {
+        name: "Yash Patel",
+        rollNumber: "WD116",
+        course: "Web Development",
+        email: "yash.patel@example.com",
+        batch: "2025",
+        image: "https://randomuser.me/api/portraits/men/8.jpg"
+      },
+      {
+        name: "Iqra Ahmed",
+        rollNumber: "WD117",
+        course: "Web Development",
+        email: "iqra.ahmed@example.com",
+        batch: "2025",
+        image: "https://randomuser.me/api/portraits/women/9.jpg"
+      },
+      {
+        name: "Danish Siddiqui",
+        rollNumber: "WD118",
+        course: "Web Development",
+        email: "danish.siddiqui@example.com",
+        batch: "2025",
+        image: "https://randomuser.me/api/portraits/men/9.jpg"
+      },
+      {
+        name: "Priya Nair",
+        rollNumber: "WD119",
+        course: "Web Development",
+        email: "priya.nair@example.com",
+        batch: "2025",
+        image: "https://randomuser.me/api/portraits/women/10.jpg"
+      },
+      {
+        name: "Aarav Malhotra",
+        rollNumber: "WD120",
+        course: "Web Development",
+        email: "aarav.malhotra@example.com",
+        batch: "2025",
+        image: "https://randomuser.me/api/portraits/men/10.jpg"
+      }
+  ];
+
+  const container = document.getElementById("cardContainer");
+  const searchInput = document.getElementById("searchInput");
+
+  // Function to display student cards based on name or roll number
+  function displayCards(filter = "") {
+    container.innerHTML = ""; // Clear existing cards
+
+    const lowerFilter = filter.toLowerCase();
+
+    let anyMatch = false;
+
+    students.forEach(student => {
+      const nameMatch = student.name.toLowerCase().includes(lowerFilter);
+      const rollMatch = student.rollNumber.toLowerCase().includes(lowerFilter);
+
+      if (filter === "" || nameMatch || rollMatch) {
+        anyMatch = true;
+
+        const card = document.createElement("div");
+        card.classList.add("card");
+
+        card.innerHTML = `
+          <img src="${student.image}" alt="${student.name}">
+          <h3>${student.name}</h3>
+          <p><strong>Roll No:</strong> ${student.rollNumber}</p>
+          <p><strong>Course:</strong> ${student.course}</p>
+          <p><strong>Email:</strong> ${student.email}</p>
+          <p><strong>Batch:</strong> ${student.batch}</p>
+        `;
+
+        container.appendChild(card);
+      }
+    });
+
+    // Optional: Show message if no match found
+    if (!anyMatch) {
+      container.innerHTML = "<p style='color: gray;'>No student found.</p>";
+    }
+  }
+
+  // Show all cards on load
+  displayCards();
+
+  // Filter as user types
+  searchInput.addEventListener("input", function () {
+    displayCards(this.value.trim());
+  });
+</script>
+
+
+</body>
+</html>
